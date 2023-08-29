@@ -15,9 +15,8 @@ const displayPhones = (phones, isShowAll) => {
     if (!isShowAll) {
         phones = phones.slice(0, 12)
     }
-
     phones.forEach(phone => {
-
+        // console.log(phone);
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card min-w-96 bg-base-100 shadow-xl`;
         phoneCard.innerHTML = `
@@ -28,7 +27,7 @@ const displayPhones = (phones, isShowAll) => {
                         <h2 class="card-title">${phone.brand}</h2>
                         <p>${phone.phone_name}</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button onclick="handleShowDetail('${phone.slug}');showModal.showModal()" class="btn btn-primary">Show Details</button>
                         </div>
                     </div>
         `
@@ -55,4 +54,9 @@ const loadingSpinner = (isLoading) => {
 }
 const handleShowAll = () => {
     handleSearch(true);
+}
+const handleShowDetail = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    console.log(data);
 }
