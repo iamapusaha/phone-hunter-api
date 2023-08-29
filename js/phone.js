@@ -32,6 +32,7 @@ const displayPhones = (phones) => {
         `
         cardContainer.appendChild(phoneCard)
     });
+    loadingSpinner(false);
 
 }
 const handleSearch = () => {
@@ -39,6 +40,17 @@ const handleSearch = () => {
     const searchValue = searchField.value;
     searchField.value = '';
     loadPhone(searchValue);
+    loadingSpinner(true);
 }
 
+const loadingSpinner = (isLoading) => {
+    const spinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        spinner.classList.remove('hidden')
+    } else {
+        spinner.classList.add('hidden')
+    }
+}
+const handleShowAll = () => {
 
+}
