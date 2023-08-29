@@ -6,8 +6,16 @@ const loadPhone = async (searchText) => {
 const displayPhones = (phones) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = '';
+    const showAllBtn = document.getElementById('btn-show-all')
+    if (phones.length > 12) {
+        showAllBtn.classList.remove('hidden')
+    } else {
+        showAllBtn.classList.add('hidden')
+    }
+
+    phones = phones.slice(0, 12)
     phones.forEach(phone => {
-        // console.log(phone);
+
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card min-w-96 bg-base-100 shadow-xl`;
         phoneCard.innerHTML = `
