@@ -58,5 +58,19 @@ const handleShowAll = () => {
 const handleShowDetail = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
-    console.log(data);
+    console.log(data.data);
+    displayModal(data.data)
+}
+
+const displayModal = (phone) => {
+    const modalInfo = document.getElementById('modal-info');
+
+    modalInfo.innerHTML = `
+                        <figure class="px-10 pt-10 flex justify-center">
+                            <img src="${phone.image}" class="rounded-xl" />
+                        </figure>
+                        <h3 class="font-bold text-lg">${phone.brand}</h3>
+                        <p class="py-4">Press ESC key or click the button below to close</p>
+    `
+
 }
